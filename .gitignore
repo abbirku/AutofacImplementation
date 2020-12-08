@@ -5,3 +5,5 @@
 /AutofacImplementation/.vs/AutofacImplementation/v16
 /AutofacImplementation/Core/bin/Debug/netcoreapp3.1
 /AutofacImplementation/Core/obj
+/AutofacImplementation/Infrastructure/bin/Debug/netcoreapp3.1
+/AutofacImplementation/Infrastructure/obj

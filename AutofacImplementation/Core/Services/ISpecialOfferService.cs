@@ -1,13 +1,11 @@
 ﻿using Core.BusinessObjects;
-using Core.Entities;
-using System;
+using Core.ViewModels;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Services
 {
     public interface ISpecialOfferService
     {
-        List<Products> GenerateOffers(ProductNeeds needs);
+        List<OfferedProducts> GenerateOffers(ProductNeeds needs);
     }
 }
