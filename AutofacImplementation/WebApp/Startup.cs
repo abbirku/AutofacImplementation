@@ -44,10 +44,10 @@ namespace WebApp
         //Needed for Autofac
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            var minVal = Configuration.GetConnectionString("minVal");
-            var maxVal = Configuration.GetConnectionString("maxVal");
+            var minVal = Configuration.GetValue(typeof (int), "Offers:minVal");
+            var maxVal = Configuration.GetValue(typeof(int), "Offers:maxVal");
 
-            builder.RegisterModule(new InfrastructureModule(int.Parse(minVal), int.Parse(maxVal)));
+            builder.RegisterModule(new InfrastructureModule((int)minVal, (int)maxVal));
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
