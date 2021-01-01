@@ -1,48 +1,61 @@
 ﻿using System.Collections.Generic;
 
+//Just a basic implementation for maintaining structure
+
 namespace Core
 {
-    public class Repository<T> : IRepository<T> where T : IEntity
+    /*
+     * Note: For Entity Frameword instead of using ListContext we use DbContext of EFCore
+     * **/
+    public abstract class Repository<TEntity, TContext> : IRepository<TEntity, TContext>
+        where TEntity : class, IEntity
+        where TContext : ListContext //DbContext
     {
-        private readonly List<T> list;
+        private readonly TContext _dbContext;
+        private readonly List<TEntity> _dbSet;
 
-        public Repository()
+        public Repository(TContext context)
         {
-            list = new List<T>();
+            _dbContext = context;
+            _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public T Add(T item)
+        public TEntity Add(TEntity item)
         {
-            item.Id = list.Count + 1;
-            list.Add(item);
+            item.Id = _dbSet.Count + 1;
+            _dbSet.Add(item);
+
             return item;
         }
 
-        public bool Delete(int id)
+        public bool Delete(TEntity data)
         {
-            var item = list.Find(x => x.Id == id);
-            if (item == null)
+            var index = _dbSet.FindIndex(x => x.Id == data.Id);
+            if (index == -1)
                 return false;
 
-            list.Remove(item);
+            _dbSet.RemoveAt(index);
             return true;
         }
 
-        public T Edit(T item)
+        public TEntity Edit(TEntity item)
         {
-            var index = list.FindIndex(x => x.Id == item.Id);
-            list[index] = item;
+            var index = _dbSet.FindIndex(x => x.Id == item.Id);
+            if (index < 0)
+                return null;
+
+            _dbSet[index] = item;
             return item;
         }
 
-        public T Get(int id)
+        public TEntity Get(int id)
         {
-            return list.Find(x => x.Id == id);
+            return _dbSet.Find(x => x.Id == id);
         }
 
-        public List<T> GetAll()
+        public List<TEntity> GetAll()
         {
-            return list;
+            return _dbSet;
         }
     }
 }

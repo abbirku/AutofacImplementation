@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿//Just a basic implementation for maintaining structure
 namespace Core
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public int SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
+        protected readonly ListContext _listContext;
 
-        public Task<int> SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public UnitOfWork(ListContext listContext) => _listContext = listContext;
+
+        public int SaveChanges() => _listContext.SaveChanges();
     }
 }

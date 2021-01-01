@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Entities;
-using Core.Repositories;
-using Core.ViewModels;
+using Infrastructure.Entities;
+using Infrastructure.Repositories;
+using Infrastructure.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers

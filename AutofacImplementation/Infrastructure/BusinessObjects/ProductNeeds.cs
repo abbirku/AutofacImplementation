@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.BusinessObjects
+namespace Infrastructure.BusinessObjects
 {
     public class ProductNeeds
     {

@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core;
+using System.ComponentModel.DataAnnotations;
 
-namespace Core.Entities
+//Just a basic implementation for maintaining structure
+namespace Infrastructure.Entities
 {
-    public class Products : Entity
+    public class Products : IEntity
     {
+        public int Id { get; set; }
+
         [Required]
         [Display(Name = "Product Name")]
         public string Name { get; set; }
