@@ -2,8 +2,13 @@
 
 namespace Core
 {
-    //Just a basic implementation for maintaining structure
-    public interface IUnitOfWork : IDisposable //We, Need disposable for EFCore but not here
+    /*
+     * Notes:
+     * ------
+     * 1. In real implementation provide "SaveChanges()" and "Task<int> SaveChangesAsync();" in IUnitOfWork
+     * 2. Just a basic implementation for maintaining  DevSkill structure.
+     * **/
+    public interface IUnitOfWork : IDisposable
     {
         int SaveChanges();
     }

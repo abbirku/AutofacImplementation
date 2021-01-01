@@ -5,11 +5,15 @@
 namespace Core
 {
     /*
-     * Note: For Entity Frameword instead of using ListContext we use DbContext of EFCore
+     * Notes:
+     * ------
+     * 1. For Entity Frameword instead of using ListContext we use DbContext of EFCore
+     * 2. In real implementation use Repository pattern of DevSkill
+     * 3. Just a basic implementation for maintaining  DevSkill structure.
      * **/
     public abstract class Repository<TEntity, TContext> : IRepository<TEntity, TContext>
         where TEntity : class, IEntity
-        where TContext : ListContext //DbContext
+        where TContext : ListContext //Replace ListContext with DbContext for EFCore
     {
         private readonly TContext _dbContext;
         private readonly List<TEntity> _dbSet;

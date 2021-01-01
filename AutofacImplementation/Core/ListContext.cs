@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 
-//Just a basic implementation for maintaining structure
 namespace Core
 {
-
+    /*
+     * Notes:
+     * ------
+     * 1. Will be single instance through out the application
+     * 2. Just a basic implementation for maintaining DevSkill structure.
+     * **/
     public class DBSetsCollection
     {
         public IDictionary<string, object> _dbSets;
@@ -22,7 +26,6 @@ namespace Core
         }
     }
 
-    //Will be single instance through out the application
     public class ListContext
     {
         private readonly IDictionary<string, object> _dbSets;
@@ -53,7 +56,7 @@ namespace Core
             return (List<T>)obj;
         }
 
-        //Here, SaveChanges returns 1. Just a basic implementation for maintaining structure
+        //Here, SaveChanges just returns 1. Just a basic implementation for maintaining structure.
         public int SaveChanges()
         {
             return 1;
