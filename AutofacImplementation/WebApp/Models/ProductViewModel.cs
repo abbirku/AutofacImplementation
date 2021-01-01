@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models
 {
-    public class ProductModel
+    public class ProductModel : IDisposable
     {
         private readonly IShopUnitOfWork _productUnitOfWork;
         private readonly IProductService _productService;

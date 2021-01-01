@@ -1,9 +1,13 @@
 ﻿
+using Infrastructure.Entities;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace Infrastructure.Context
 {
     public interface IOfferContext
     {
-
+        public IList<Products> Products { get; set; } //Just a structural sample code to understand real code. Note:- instead of IList<T> use DbSet<T> for EFCore
     }
 
     public class ShoppingContext : IOfferContext
@@ -17,8 +21,9 @@ namespace Infrastructure.Context
             _migrationAssemblyName = migrationAssemblyName;
         }
 
-        /*
-         * Note: Implement OnConfiguring, OnModelCreating and register DbSet<T> for each entity according to EFCore
-         * **/
+        //Note: From Here, Implement OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder), 
+        //OnModelCreating(ModelBuilder builder) and register DbSet<T> for each entity according to EFCore
+
+        public IList<Products> Products { get; set; } //Just a structural sample code to understand real code. Note:- instead of IList<T> use DbSet<T> for EFCore
     }
 }

@@ -26,7 +26,7 @@ namespace Core
      * **/
     public class UnitOfWork : IUnitOfWork
     {
-        protected readonly ListContext _listContext;
+        protected readonly ListContext _listContext; //Replace ListContext with DbContext for EFCore
 
         public UnitOfWork(ListContext listContext) => _listContext = listContext;
 
