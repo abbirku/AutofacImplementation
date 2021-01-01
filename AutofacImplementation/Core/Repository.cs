@@ -1,12 +1,8 @@
-﻿using Core.Entities;
-using Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Infrastructure.Repositories
+namespace Core
 {
-    public class Repository<T> : IRepository<T> where T : Entity
+    public class Repository<T> : IRepository<T> where T : IEntity
     {
         private readonly List<T> list;
 

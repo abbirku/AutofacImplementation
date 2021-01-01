@@ -1,11 +1,10 @@
-﻿using Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Repositories
+namespace Core
 {
-    public interface IRepository<T> where T : Entity
+    public interface IRepository<T> where T : IEntity
     {
         T Add(T item);
         T Edit(T item);
