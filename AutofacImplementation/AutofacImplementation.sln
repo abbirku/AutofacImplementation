@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{21CE4FA3-C6F4-4192-A3FC-F49268E4B074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{8165FE93-A7CB-4A4C-B0DA-D33ACBF812BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{CCE2BC20-D654-41DC-8B95-EDEAC53D426A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21CE4FA3-C6F4-4192-A3FC-F49268E4B074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CE4FA3-C6F4-4192-A3FC-F49268E4B074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CE4FA3-C6F4-4192-A3FC-F49268E4B074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CE4FA3-C6F4-4192-A3FC-F49268E4B074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8165FE93-A7CB-4A4C-B0DA-D33ACBF812BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8165FE93-A7CB-4A4C-B0DA-D33ACBF812BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8165FE93-A7CB-4A4C-B0DA-D33ACBF812BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8165FE93-A7CB-4A4C-B0DA-D33ACBF812BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE2BC20-D654-41DC-8B95-EDEAC53D426A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE2BC20-D654-41DC-8B95-EDEAC53D426A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE2BC20-D654-41DC-8B95-EDEAC53D426A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE2BC20-D654-41DC-8B95-EDEAC53D426A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B531D179-C2EB-435F-812C-2E237ED8B225}
+	EndGlobalSection
+EndGlobal
