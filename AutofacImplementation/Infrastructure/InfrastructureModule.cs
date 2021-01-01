@@ -3,6 +3,7 @@ using Infrastructure.Services;
 using Infrastructure.Context;
 using Infrastructure.Repositories;
 using Core;
+using Infrastructure.UnitOfWorks;
 
 namespace Infrastructure
 {
@@ -56,18 +57,21 @@ namespace Infrastructure
                    .InstancePerLifetimeScope();
 
             //Registering repositories. We don't need to register context for EFCore
-            builder.RegisterType<ListContext>().AsSelf().SingleInstance();
+            builder.RegisterType<DBSetsCollection>().AsSelf().SingleInstance();
 
             //Registering repositories
             builder.RegisterType<ProductRepository>().As<IProductRepository>()
                 .InstancePerLifetimeScope();
 
             //Registering UnitOfWorks
-            builder.RegisterType<ProductRepository>().As<IProductRepository>()
+            builder.RegisterType<ShopUnitOfWork>().As<IShopUnitOfWork>()
                 .InstancePerLifetimeScope();
 
             //Registering services
             builder.RegisterType<SpecialOfferService>().As<ISpecialOfferService>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductService>().As<IProductService>()
                 .InstancePerLifetimeScope();
 
             base.Load(builder);

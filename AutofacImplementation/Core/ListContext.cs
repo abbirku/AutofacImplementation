@@ -3,15 +3,33 @@
 //Just a basic implementation for maintaining structure
 namespace Core
 {
-    
+
+    public class DBSetsCollection
+    {
+        public IDictionary<string, object> _dbSets;
+
+        public DBSetsCollection()
+        {
+            _dbSets = new Dictionary<string, object>();
+        }
+
+        public IDictionary<string, object> GetDbSets()
+        {
+            if (_dbSets == null)
+                _dbSets = new Dictionary<string, object>();
+
+            return _dbSets;
+        }
+    }
+
     //Will be single instance through out the application
     public class ListContext
     {
         private readonly IDictionary<string, object> _dbSets;
 
-        public ListContext()
+        public ListContext(DBSetsCollection dBSetsCollection)
         {
-            _dbSets = new Dictionary<string, object>();
+            _dbSets = dBSetsCollection.GetDbSets();
         }
 
         public List<T> Set<T>() where T : IEntity

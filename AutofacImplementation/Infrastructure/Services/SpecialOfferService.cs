@@ -1,8 +1,4 @@
-﻿using Core;
-using Infrastructure.BusinessObjects;
-using Infrastructure.Entities;
-using Infrastructure.Repositories;
-using Infrastructure.Services;
+﻿using Infrastructure.BusinessObjects;
 using Infrastructure.UnitOfWorks;
 using Infrastructure.ViewModels;
 using System;
@@ -10,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Infrastructure.Services
 {
-    public interface ISpecialOfferService
+    public interface ISpecialOfferService : IDisposable
     {
         List<OfferedProducts> GenerateOffers(ProductNeeds needs);
     }
@@ -54,6 +50,11 @@ namespace Infrastructure.Services
         private decimal RandomOffer(decimal price)
         {
             return price * (_random.Next(1, 100) / 100);
+        }
+
+        public void Dispose()
+        {
+            _unitOfWork.Dispose();
         }
     }
 }
