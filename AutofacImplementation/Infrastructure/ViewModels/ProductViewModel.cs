@@ -1,9 +1,9 @@
-﻿using Core.Entities;
+﻿using Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.ViewModels
+namespace Infrastructure.ViewModels
 {
     public class ProductViewModel
     {

@@ -1,7 +1,7 @@
-﻿using Core.Entities;
+﻿using Infrastructure.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace Core.ViewModels
+namespace Infrastructure.ViewModels
 {
     public class OfferedProducts : Products
     {

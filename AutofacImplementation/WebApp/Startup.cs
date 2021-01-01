@@ -44,16 +44,19 @@ namespace WebApp
         //Needed for Autofac
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            var minVal = Configuration.GetValue(typeof (int), "Offers:minVal");
-            var maxVal = Configuration.GetValue(typeof(int), "Offers:maxVal");
+            var connectionStringName = "DefaultConnection";
+            var connectionString = Configuration.GetConnectionString(connectionStringName);
+            var migrationAssemblyName = typeof(Startup).Assembly.FullName;
 
-            builder.RegisterModule(new InfrastructureModule((int)minVal, (int)maxVal));
+            builder.RegisterModule(new InfrastructureModule(connectionString, migrationAssemblyName));
+            builder.RegisterModule(new WebModule(connectionString, migrationAssemblyName));
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

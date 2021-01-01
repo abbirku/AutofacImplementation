@@ -1,17 +1,14 @@
 ﻿using Autofac;
-using Core.Repositories;
-using Core.Services;
+using Infrastructure.Services;
 using Infrastructure.Context;
 using Infrastructure.Repositories;
-using Infrastructure.Services;
+using Core;
+using Infrastructure.UnitOfWorks;
 
 namespace Infrastructure
 {
     public class InfrastructureModule : Module
     {
-        private readonly int _minVal;
-        private readonly int _maxVal;
-
         //Note in future we will pass connectionString & migrationAssemblyName for dbContext
         //Ex:
         /** 
@@ -42,23 +39,39 @@ namespace Infrastructure
          *  }
          */
 
-        public InfrastructureModule(int minVal, int maxVal)
+        private readonly string _connectionString;
+        private readonly string _migrationAssemblyName;
+
+        public InfrastructureModule(string connectionString, string migrationAssemblyName)
         {
-            _minVal = minVal;
-            _maxVal = maxVal;
+            _connectionString = connectionString;
+            _migrationAssemblyName = migrationAssemblyName;
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<OfferContext>()
-                .WithParameter("minVal", _minVal) //It will be connectionString
-                .WithParameter("maxVal", _maxVal) //It will be migrationAssemblyName
+
+            builder.RegisterType<ShoppingContext>()
+                   .WithParameter("connectionString", _connectionString)
+                   .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                   .InstancePerLifetimeScope();
+
+            //Registering repositories. We don't need to register context for EFCore
+            builder.RegisterType<DBSetsCollection>().AsSelf().SingleInstance();
+
+            //Registering repositories
+            builder.RegisterType<ProductRepository>().As<IProductRepository>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>))
-                .SingleInstance();
+            //Registering UnitOfWorks
+            builder.RegisterType<ShopUnitOfWork>().As<IShopUnitOfWork>()
+                .InstancePerLifetimeScope();
 
+            //Registering services
             builder.RegisterType<SpecialOfferService>().As<ISpecialOfferService>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ProductService>().As<IProductService>()
                 .InstancePerLifetimeScope();
 
             base.Load(builder);

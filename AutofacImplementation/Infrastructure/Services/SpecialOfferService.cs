@@ -1,21 +1,24 @@
-﻿using Core.BusinessObjects;
-using Core.Entities;
-using Core.Repositories;
-using Core.Services;
-using Core.ViewModels;
+﻿using Infrastructure.BusinessObjects;
+using Infrastructure.UnitOfWorks;
+using Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 
 namespace Infrastructure.Services
 {
+    public interface ISpecialOfferService : IDisposable
+    {
+        List<OfferedProducts> GenerateOffers(ProductNeeds needs);
+    }
+
     public class SpecialOfferService : ISpecialOfferService
     {
-        private readonly IRepository<Products> _repository;
+        private readonly IShopUnitOfWork _unitOfWork;
         private readonly Random _random;
 
-        public SpecialOfferService(IRepository<Products> repository)
+        public SpecialOfferService(IShopUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _random = new Random();
         }
 
@@ -25,7 +28,7 @@ namespace Infrastructure.Services
                 throw new Exception("Amount range must be in between 10 to 100");
 
             var offeredProducts = new List<OfferedProducts>();
-            var products = _repository.GetAll();
+            var products = _unitOfWork.ProductRepository.GetAll();
             foreach(var product in products)
             {
                 var offeredPrice = product.Price - RandomOffer(product.Price);
@@ -47,6 +50,11 @@ namespace Infrastructure.Services
         private decimal RandomOffer(decimal price)
         {
             return price * (_random.Next(1, 100) / 100);
+        }
+
+        public void Dispose()
+        {
+            _unitOfWork.Dispose();
         }
     }
 }
